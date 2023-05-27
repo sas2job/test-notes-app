@@ -1,2 +1,45 @@
-<h1>Notes#index</h1>
-<p>Find me in app/views/notes/index.html.erb</p>
+<h1 class="text-center mt-3">N Notes</h1>
+<div class="table-responsive">
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Note</th>
+        <th scope="col" style="width: 200px;">Author</th>
+        <th scope="col" style="width: 150px;">Date</th>
+        <th scope="col" style="width: 50px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notes.each do |note| %>
+        <tr>
+          <td><%= note.line_number %></td>
+          <td><%= note.note %></td>
+          <td data-toggle="tooltip" data-placement="top" title="<%= note.author %>">
+            <%= note.author.split(' ').first %>
+          </td>
+          <td data-toggle="tooltip" data-placement="top" title="<%= note.date_of_creation.strftime('%Y-%m-%d %H:%M:%S') %>">
+            <%= note.date_of_creation.strftime('%Y-%m-%d') %>
+          </td>
+          <td>
+            <%= link_to '', note, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'fas fa-trash-alt', title: 'Delete' %>
+          </td>
+        </tr>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= form_with model: Note.new, url: notes_path, remote: true do |form| %>
+          <tr>
+            <td></td>
+            <td><%= form.text_field :note, class: 'form-control' %></td>
+            <td></td>
+            <td></td>
+            <td><%= form.submit 'Save', class: 'btn btn-primary' %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="text-center mt-5">
+  <%= paginate @notes, theme: 'bootstrap' %>
+</div>
