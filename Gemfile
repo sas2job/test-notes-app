@@ -55,6 +55,7 @@ gem 'bootstrap', '~> 5.0'
 
 gem 'kaminari'
 
+gem 'font-awesome-sass', '~> 6.4.0'
 
 group :development, :test do
 
