@@ -21,13 +21,9 @@
           <td data-toggle="tooltip" data-placement="top" title="<%= note.date_of_creation.strftime('%Y-%m-%d %H:%M:%S') %>">
             <%= note.date_of_creation.strftime('%Y-%m-%d') %>
           </td>
-          <%
-=begin%>
- <td>
-            <%= link_to '', note, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'fas fa-trash-alt', title: 'Delete' %>
-          </td> 
-<%
-=end%>
+          <td>
+            <%= button_to '', note, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'fas fa-trash-alt', title: 'Delete' %>
+          </td>
         </tr>
       <% end %>
       <% if user_signed_in? %>
