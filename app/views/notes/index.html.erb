@@ -16,7 +16,7 @@
           <td><%= note.line_number %></td>
           <td><%= note.note %></td>
           <td data-toggle="tooltip" data-placement="top" title="<%= note.author %>">
-            <%= note.author.split(' ').first %>
+            <%= note.user.full_name %>
           </td>
           <td data-toggle="tooltip" data-placement="top" title="<%= note.date_of_creation.strftime('%Y-%m-%d %H:%M:%S') %>">
             <%= note.date_of_creation.strftime('%Y-%m-%d') %>
@@ -41,5 +41,5 @@
   </table>
 </div>
 <div class="text-center mt-5">
-  <%= paginate @notes, theme: 'bootstrap' %>
+ <%= paginate @notes %>  
 </div>
