@@ -5,6 +5,7 @@ class NotesController < ApplicationController
   def index
     @notes = Note.order(:line_number).page(params[:page]).per(20)
     @note = Note.new
+    @number_notes = Note.all.count
   end
 
   def create
