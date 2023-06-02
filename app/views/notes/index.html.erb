@@ -15,11 +15,11 @@
         <tr>
           <td><%= note.id %></td>
           <td><%= note.note %></td>
-          <td data-toggle="tooltip" data-placement="top" title="<%= note.author %>">
-            <%= note.user.full_name %>
+          <td data-toggle="tooltip" data-placement="top" title="<%= note.user.email %>">
+            <%= note.user.email %>
           </td>
-          <td data-toggle="tooltip" data-placement="top" title="<%= note.date_of_creation.strftime('%Y-%m-%d %H:%M:%S') %>">
-            <%= note.date_of_creation.strftime('%Y-%m-%d') %>
+          <td data-toggle="tooltip" data-placement="top" title="<%= note.created_at&.strftime('%Y-%m-%d %H:%M:%S') %>">
+            <%= note.created_at&.strftime('%Y-%m-%d') %>
           </td>
           <td>
             <%= button_to '', note, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'fas fa-trash-alt', title: 'Delete' %>

@@ -3,8 +3,8 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:destroy]
 
   def index
-    @notes = Note.order(:line_number).page(params[:page]).per(20)
-    @note = Note.new
+    @notes = Note.includes(:user).order(:line_number).page(params[:page]).per(20)
+    
     @number_notes = Note.all.count
   end
 
@@ -28,6 +28,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:note)
+    params.require(:note).permit(:note, :user_id)
   end
 end
